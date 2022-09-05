@@ -6,23 +6,23 @@ import styled from "styled-components";
 export default function Header() {
   const menu = [
     {
-      id: 1,
+      key: "movie",
       name: "영화",
       list: [
-        { id: 1, text: "인기", path: "popular" },
-        { id: 1, text: "현재 상영중", path: "now_playing" },
-        { id: 1, text: "개봉 예정", path: "upcoming" },
-        { id: 1, text: "높은 평점", path: "top_rated" },
+        { text: "인기", path: "popular" },
+        { text: "현재 상영중", path: "now_playing" },
+        { text: "개봉 예정", path: "upcoming" },
+        { text: "높은 평점", path: "top_rated" },
       ],
     },
     {
-      id: 2,
+      key: "tv",
       name: "TV",
       list: [
-        { id: 2, text: "인기" },
-        { id: 2, text: "오늘 방영" },
-        { id: 2, text: "TV 방영중" },
-        { id: 2, text: "높은 평점" },
+        { text: "인기", path: "popular" },
+        { text: "오늘 방영", path: "airing_today" },
+        { text: "TV 방영중", path: "on_the_air" },
+        { text: "높은 평점", path: "top_rated" },
       ],
     },
     {
@@ -49,7 +49,7 @@ export default function Header() {
             <Menu>{menu.name}</Menu>
             <SubMenuList>
               {menu.list.map((list) => (
-                <Link to={`/movie/${list.path}`}>
+                <Link to={`/${menu.key}/${list.path}`}>
                   <SubMenu>{list.text}</SubMenu>
                 </Link>
               ))}
@@ -96,7 +96,7 @@ const MenuList = styled.ul`
   &:hover {
     ul {
       display: block;
-      z-index: 1;
+      z-index: 100;
     }
   }
 `;

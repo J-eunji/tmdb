@@ -49,12 +49,38 @@ export const getUpcoming = async () => {
   }
 };
 
-export const getTopRated = async () => {
+export const getTopRated = async (category) => {
   try {
-    let { data } = await instance.get("/movie/top_rated", {
+    let { data } = await instance.get(`/${category}/top_rated`, {
       params: {
         language: "ko-KR",
         region: "KR",
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getAiringToday = async () => {
+  try {
+    let { data } = await instance.get("/tv/airing_today", {
+      params: {
+        language: "ko-KR",
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getOnTheAir = async () => {
+  try {
+    let { data } = await instance.get("/tv/on_the_air", {
+      params: {
+        language: "ko-KR",
       },
     });
     return data;

@@ -2,22 +2,20 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Vote from "../common/Vote";
 
-export default function MovieItem({ movie, ref }) {
-  const { title, release_date, poster_path, vote_average } = movie;
+export default function TVItem({ tv, ref }) {
+  const { id, name, first_air_date, poster_path, vote_average } = tv;
   const imgUrl = `https://image.tmdb.org/t/p/w200${poster_path}`;
   return (
     <Block ref={ref}>
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/tv/${id}`}>
         <ImgBox>
-          <img src={imgUrl} alt={title} />
+          <img src={imgUrl} alt={name} />
           <VoteBox>
             <Vote vote={vote_average} />
           </VoteBox>
         </ImgBox>
-        <TextBox>
-          <TitleText>{title}</TitleText>
-          <ReleaseDate>{release_date}</ReleaseDate>
-        </TextBox>
+        <TitleText>{name}</TitleText>
+        <ReleaseDate>{first_air_date}</ReleaseDate>
       </Link>
     </Block>
   );
@@ -27,30 +25,15 @@ const Block = styled.div`
   width: 200px;
   overflow: hidden;
   margin: 20px;
-  border-radius: 8px;
-  box-shadow: 3px 3px 5px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const ImgBox = styled.div`
   height: 300px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
-  position: relative;
   overflow: hidden;
-`;
-
-const TextBox = styled.div`
-  padding: 0 10px 10px 10px;
-`;
-
-const TitleText = styled.h4`
-  font-size: 1em;
-  font-weight: 700;
-  margin-top: 10px;
-`;
-
-const ReleaseDate = styled.div`
-  color: gray;
+  position: relative;
 `;
 
 const VoteBox = styled.div`
@@ -70,4 +53,14 @@ const VoteBox = styled.div`
       z-index: 2;
     }
   }
+`;
+
+const TitleText = styled.h4`
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-top: 10px;
+`;
+
+const ReleaseDate = styled.div`
+  color: gray;
 `;

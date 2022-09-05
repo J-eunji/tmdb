@@ -47,7 +47,7 @@ export default function Movie() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let { results } = await getTopRated();
+      let { results } = await getTopRated("movie");
       setTopRated(results);
     };
     fetchData();

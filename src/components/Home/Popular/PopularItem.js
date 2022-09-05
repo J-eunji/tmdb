@@ -1,5 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Vote from "../../common/Vote";
 
 export default function PopularItem({ popularItem }) {
   const {
@@ -12,25 +13,16 @@ export default function PopularItem({ popularItem }) {
     id,
   } = popularItem;
   const ImgUrl = "https://image.tmdb.org/t/p/w300";
-  const popularityPercentage = Math.round(vote_average * 10);
-  const color =
-    popularityPercentage >= 70
-      ? "#239c56"
-      : popularityPercentage >= 40
-      ? "#c8cf5e"
-      : "#a72b2b";
-  const status = Math.round((popularityPercentage * 360) / 100);
+
   return (
     <ItemBox>
       <Link to={`/movie/${id}`}>
         <Img>
           <img src={ImgUrl + poster_path} alt={title || name} />
+          <VoteBox>
+            <Vote vote={vote_average} />
+          </VoteBox>
         </Img>
-        <Popularity status={status} color={color}>
-          <Circle />
-          <p>{popularityPercentage}</p>
-          <span>%</span>
-        </Popularity>
         <p>{title || name}</p>
         <span>{release_date || first_air_date}</span>
       </Link>
@@ -44,7 +36,6 @@ const ItemBox = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-
   & + & {
     margin-left: 20px;
   }
@@ -69,28 +60,13 @@ const Img = styled.div`
   }
 `;
 
-const Popularity = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const VoteBox = styled.div`
   position: absolute;
-  bottom: 40px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  z-index: 2;
-  outline: 5px solid #000;
-  ${({ status, backStatus, color }) =>
-    css`
-      background: conic-gradient(
-        ${color} ${status}deg,
-        #fff ${status}deg ${360 - status}deg
-      );
-    `}
+  bottom: 30px;
+  left: 10px;
   p {
     color: #fff;
-    font-size: 0.9em;
+    font-size: 15px;
     margin: 0;
     z-index: 2;
   }
@@ -99,16 +75,4 @@ const Popularity = styled.div`
     font-size: 5px;
     z-index: 2;
   }
-`;
-
-const Circle = styled.div`
-  background-color: none;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  background-color: #000;
-  border-radius: 50%;
-  z-index: 1;
 `;

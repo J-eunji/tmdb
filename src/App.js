@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "./components/Home/Header";
 import Main from "./components/Home/Main";
 import Movie from "./components/Movie/Movie";
+import TV from "./components/TV/TV";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/movie/*" element={<Movie />} />
+          <Route path="/tv/*" element={<TV />} />
         </Routes>
       </Container>
     </RecoilRoot>

@@ -96,7 +96,7 @@ const ImgBox = styled.div`
   img {
     height: 100%;
   }
-  z-index: 100;
+  z-index: 10;
 `;
 
 const TitleBox = styled.div`
