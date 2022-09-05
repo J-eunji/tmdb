@@ -40,7 +40,7 @@ const ImgBox = styled.div`
 `;
 
 const TextBox = styled.div`
-  padding: 0 10px 10px 10px;
+  padding: 10px;
 `;
 
 const TitleText = styled.h4`
