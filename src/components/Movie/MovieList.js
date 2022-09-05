@@ -1,32 +1,26 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getPopular } from "../../dataApi";
-import Title from "../common/Title";
 import MovieItem from "./MovieItem";
 
-export default function MovieList() {
-  const [movieList, setMovieList] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      let { results } = await getPopular("movie");
-      setMovieList(results);
-    };
-    fetchData();
-  }, []);
-
+export default function MovieList({ label, state }) {
   return (
-    <div>
-      <Title sort="popular" margin="0 0 20px 0" />
+    <Container>
+      <p>{label} 영화</p>
       <ListBlock>
-        {movieList.map((movie) => (
+        {state.map((movie) => (
           <MovieItem key={movie.id} movie={movie} />
         ))}
       </ListBlock>
-    </div>
+    </Container>
   );
 }
 
+const Container = styled.div`
+  padding: 20px;
+  p {
+    margin: 20px 0 0 20px;
+    font-size: 2em;
+  }
+`;
 const ListBlock = styled.div`
   display: flex;
   flex-wrap: wrap;

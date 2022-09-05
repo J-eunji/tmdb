@@ -10,9 +10,9 @@ export default function Header() {
       name: "영화",
       list: [
         { id: 1, text: "인기", path: "popular" },
-        { id: 1, text: "현재 상영중", path: "nowPlayng" },
-        { id: 1, text: "개봉 예정", path: "Upcoming" },
-        { id: 1, text: "높은 평점", path: "TopRated" },
+        { id: 1, text: "현재 상영중", path: "now_playing" },
+        { id: 1, text: "개봉 예정", path: "upcoming" },
+        { id: 1, text: "높은 평점", path: "top_rated" },
       ],
     },
     {

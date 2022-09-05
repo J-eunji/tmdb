@@ -21,9 +21,37 @@ export const getPopular = async (category) => {
   }
 };
 
+export const getNowPlaying = async () => {
+  try {
+    let { data } = await instance.get("/movie/now_playing", {
+      params: {
+        language: "ko-KR",
+        region: "KR",
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getUpcoming = async () => {
   try {
     let { data } = await instance.get("/movie/upcoming", {
+      params: {
+        language: "ko-KR",
+        region: "KR",
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getTopRated = async () => {
+  try {
+    let { data } = await instance.get("/movie/top_rated", {
       params: {
         language: "ko-KR",
         region: "KR",

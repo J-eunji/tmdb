@@ -27,7 +27,6 @@ const Block = styled.div`
 const ImgBox = styled.div`
   height: 300px;
   border-radius: 8px;
-  background-color: tomato;
   display: flex;
   justify-content: center;
   overflow: hidden;

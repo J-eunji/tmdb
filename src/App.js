@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router";
+import { RecoilRoot } from "recoil";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "./components/Home/Header";
 import Main from "./components/Home/Main";
@@ -6,14 +7,16 @@ import Movie from "./components/Movie/Movie";
 
 function App() {
   return (
-    <Container>
-      <GlobalStyle />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/movie/*" element={<Movie />} />
-      </Routes>
-    </Container>
+    <RecoilRoot>
+      <Container>
+        <GlobalStyle />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/movie/*" element={<Movie />} />
+        </Routes>
+      </Container>
+    </RecoilRoot>
   );
 }
 
