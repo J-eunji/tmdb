@@ -1,9 +1,7 @@
-import { AiOutlineClose } from "react-icons/ai";
 import YouTube from "react-youtube";
 import styled from "styled-components";
 import { modalState } from "../../atoms/modal";
 import { useRecoilState } from "recoil";
-import { useState } from "react";
 
 export default function UpcomingVedio({ videoUrl }) {
   const [modal, setModal] = useRecoilState(modalState);
@@ -16,9 +14,8 @@ export default function UpcomingVedio({ videoUrl }) {
     },
   };
   return (
-    <VideoModal modal={modal}>
+    <VideoModal modal={modal} onClick={() => onClose()}>
       <YouTube className="youtube" videoId={videoUrl} opts={opts} />
-      <AiOutlineClose className="btn" size={30} onClick={() => onClose()} />
     </VideoModal>
   );
 }

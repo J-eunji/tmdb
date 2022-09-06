@@ -3,14 +3,12 @@ import UpcomingItem from "./UpcomingItem";
 import UpcomingVideo from "./UpcomingVideo";
 import { getVideos, getUpcoming } from "../../../dataApi";
 import { useEffect, useState } from "react";
-import { tabState } from "../../atoms/tabList";
 import { modalState, videoUrlState } from "../../atoms/modal";
 import { useRecoilValue } from "recoil";
 
 export default function UpcomingList() {
   const [movieList, setMovieList] = useState([]);
   const [videoList, setVideoList] = useState([]);
-  const tabList = useRecoilValue(tabState);
   const imgUrl = "https://image.tmdb.org/t/p/original";
   const modal = useRecoilValue(modalState);
   const videoUrl = useRecoilValue(videoUrlState);
@@ -42,7 +40,7 @@ export default function UpcomingList() {
       );
     };
     getVideoList();
-  }, [movieList, tabList]);
+  }, [movieList]);
 
   return (
     <ContentList imgUrl={imgUrl}>

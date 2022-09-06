@@ -1,27 +1,11 @@
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { getPopular } from "../../../dataApi";
 import PopularItem from "./PopularItem";
-import { tabState } from "../../atoms/tabList";
 
-export default function PopularList() {
-  const tabList = useRecoilValue(tabState);
-  const [popularList, setPopularList] = useState([]);
-
-  useEffect(() => {
-    const category = tabList.find((tab) => tab.active).category;
-    const getData = async () => {
-      let { results } = await getPopular(category);
-      setPopularList(results);
-    };
-    getData();
-  }, [tabList]);
-
+export default function PopularList({ list, tabList }) {
   return (
     <ContentList>
-      {popularList.map((popularItem) => (
-        <PopularItem key={popularItem.id} popularItem={popularItem} />
+      {list.map((item) => (
+        <PopularItem key={item.id} popularItem={item} tabList={tabList} />
       ))}
     </ContentList>
   );

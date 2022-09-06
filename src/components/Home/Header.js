@@ -21,7 +21,7 @@ export default function Header() {
       list: [
         { text: "인기", path: "popular" },
         { text: "오늘 방영", path: "airing_today" },
-        { text: "TV 방영중", path: "on_the_air" },
+        { text: "방영중", path: "on_the_air" },
         { text: "높은 평점", path: "top_rated" },
       ],
     },

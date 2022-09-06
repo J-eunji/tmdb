@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Vote from "../../common/Vote";
 
-export default function PopularItem({ popularItem }) {
+export default function PopularItem({ popularItem, tabList }) {
   const {
     poster_path,
     title,
@@ -13,10 +13,11 @@ export default function PopularItem({ popularItem }) {
     id,
   } = popularItem;
   const ImgUrl = "https://image.tmdb.org/t/p/w300";
-
+  const category = tabList.find((tab) => tab.active).category;
+  console.log(category);
   return (
     <ItemBox>
-      <Link to={`/movie/${id}`}>
+      <Link to={`/${category}/${id}`}>
         <Img>
           <img src={ImgUrl + poster_path} alt={title || name} />
           <VoteBox>

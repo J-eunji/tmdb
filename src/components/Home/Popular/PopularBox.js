@@ -3,14 +3,14 @@ import PopularList from "./PopularList";
 import Title from "../../common/Title";
 import TabButton from "../../common/TabButton";
 
-export default function PopularBox() {
+export default function PopularBox({ sort, list, tabList }) {
   return (
     <Container>
       <HeaderBox>
-        <Title sort={"popular"} />
-        <TabButton />
+        <Title sort={sort} />
+        <TabButton sort={sort} tabList={tabList} />
       </HeaderBox>
-      <PopularList />
+      <PopularList list={list} tabList={tabList} />
     </Container>
   );
 }

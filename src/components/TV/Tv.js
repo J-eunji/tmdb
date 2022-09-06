@@ -17,7 +17,7 @@ export default function Movie() {
   const tvList = [
     { label: "인기", path: "/popular", state: popular },
     { label: "오늘 방영", path: "/airing_today", state: airingToday },
-    { label: "TV 방영중", path: "/on_the_air", state: onTheAir },
+    { label: "방영중", path: "/on_the_air", state: onTheAir },
     { label: "높은 평점", path: "/top_rated", state: topRated },
   ];
 

@@ -1,22 +1,37 @@
+import { useSetRecoilState } from "recoil";
 import styled, { css } from "styled-components";
-import { tabState } from "../atoms/tabList";
-import { useRecoilState } from "recoil";
+import { popularTab, trendingTab } from "../atoms/tabList";
 
-export default function TabButton() {
-  const [tabList, setTabList] = useRecoilState(tabState);
-  const tabClick = (id) => {
-    setTabList(
-      tabList.map((tab) => {
-        return tab.id === id
-          ? { ...tab, active: true }
-          : { ...tab, active: false };
-      })
-    );
+export default function TabButton({ tabList, sort }) {
+  const setPopularTab = useSetRecoilState(popularTab);
+  const setTrendingTab = useSetRecoilState(trendingTab);
+  const tabClick = ({ target: { name } }, id) => {
+    name === "popular" &&
+      setPopularTab(
+        tabList.map((tab) => {
+          return tab.id === id
+            ? { ...tab, active: true }
+            : { ...tab, active: false };
+        })
+      );
+    name === "trending" &&
+      setTrendingTab(
+        tabList.map((tab) => {
+          return tab.id === id
+            ? { ...tab, active: true }
+            : { ...tab, active: false };
+        })
+      );
   };
 
   const makeBtn = tabList.map((tab) => {
     return (
-      <Button key={tab.id} active={tab.active} onClick={() => tabClick(tab.id)}>
+      <Button
+        key={tab.id}
+        active={tab.active}
+        onClick={(e) => tabClick(e, tab.id)}
+        name={sort}
+      >
         {tab.icon}
         {tab.text}
       </Button>

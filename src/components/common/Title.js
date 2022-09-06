@@ -4,7 +4,7 @@ export default function Title({ sort }) {
   const titleList = [
     { id: 0, text: "인기", sort: "popular", btn: true },
     { id: 1, text: "최신 예고편", sort: "upComing", btn: false },
-    { id: 2, text: "트렌딩", sort: "trending", btn: true },
+    { id: 2, text: "주간 트렌딩", sort: "trending", btn: true },
   ];
   return (
     <Container>

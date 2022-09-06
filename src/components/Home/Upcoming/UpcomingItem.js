@@ -46,8 +46,9 @@ const ItemBox = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  border: black 1px solid;
+  background-color: #fff;
   overflow: hidden;
+  border-radius: 8px;
   p {
     font-size: 1.2em;
     margin: 5px 0;

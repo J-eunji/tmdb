@@ -89,6 +89,19 @@ export const getOnTheAir = async () => {
   }
 };
 
+export const getTrending = async (category) => {
+  try {
+    let { data } = await instance.get(`/trending/${category}/week`, {
+      params: {
+        language: "ko-KR",
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getVideos = async (results) => {
   try {
     let ids = results.map((obj) => obj.id);
