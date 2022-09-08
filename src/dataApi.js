@@ -126,3 +126,18 @@ export const getDetails = async (url) => {
     console.log(e);
   }
 };
+
+export const getSearch = async (query) => {
+  try {
+    let { data } = await instance.get(`/search/multi`, {
+      params: {
+        language: "ko-KR",
+        region: "KR",
+        query,
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};

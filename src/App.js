@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router";
 import { RecoilRoot } from "recoil";
 import styled, { createGlobalStyle } from "styled-components";
-import Header from "./components/Home/Header";
+import Header from "./components/common/Header";
 import Main from "./components/Home/Main";
 import Movie from "./components/Movie/Movie";
+import Person from "./components/Person/Person";
 import TV from "./components/TV/TV";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/movie/*" element={<Movie />} />
           <Route path="/tv/*" element={<TV />} />
+          <Route path="/person/*" element={<Person />} />
         </Routes>
       </Container>
     </RecoilRoot>

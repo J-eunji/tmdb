@@ -1,7 +1,7 @@
-import { BiSearchAlt2 } from "react-icons/bi";
 import { SiThemoviedatabase } from "react-icons/si";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Search from "./Search";
 
 export default function Header() {
   const menu = [
@@ -26,12 +26,12 @@ export default function Header() {
       ],
     },
     {
-      id: 3,
+      key: "person",
       name: "인물",
       list: [
         {
-          id: 3,
           text: "인기 인물",
+          path: "popular",
         },
       ],
     },
@@ -44,23 +44,20 @@ export default function Header() {
         </Logo>
       </Link>
       <GnbList>
-        {menu.map((menu) => (
-          <MenuList>
-            <Menu>{menu.name}</Menu>
-            <SubMenuList>
+        {menu.map((menu, idx) => (
+          <MenuList key={idx}>
+            <Menu key={menu.name}>{menu.name}</Menu>
+            <SubMenuList key={menu.key}>
               {menu.list.map((list) => (
-                <Link to={`/${menu.key}/${list.path}`}>
-                  <SubMenu>{list.text}</SubMenu>
+                <Link to={`/${menu.key}/${list.path}`} key={list.text}>
+                  <SubMenu key={list.path}>{list.text}</SubMenu>
                 </Link>
               ))}
             </SubMenuList>
           </MenuList>
         ))}
       </GnbList>
-      <SearchBox>
-        <input type="text" placeholder="영화 제목, TV 제목, 배우 이름" />
-        <BiSearchAlt2 size={30} cursor="pointer" />
-      </SearchBox>
+      <Search />
     </Container>
   );
 }
@@ -123,15 +120,5 @@ const SubMenu = styled.li`
   cursor: pointer;
   &:hover {
     background-color: #ddd;
-  }
-`;
-
-const SearchBox = styled.div`
-  display: flex;
-  input {
-    width: 300px;
-    height: 30px;
-    margin-right: 5px;
-    padding: 0 5px;
   }
 `;

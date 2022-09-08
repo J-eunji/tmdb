@@ -14,7 +14,6 @@ export default function PopularItem({ popularItem, tabList }) {
   } = popularItem;
   const ImgUrl = "https://image.tmdb.org/t/p/w300";
   const category = tabList.find((tab) => tab.active).category;
-  console.log(category);
   return (
     <ItemBox>
       <Link to={`/${category}/${id}`}>
