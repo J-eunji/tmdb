@@ -1,22 +1,40 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Vote from "../common/Vote";
+import Vote from "./Vote";
 
-export default function MovieItem({ movie, ref }) {
-  const { title, release_date, poster_path, vote_average } = movie;
-  const imgUrl = `https://image.tmdb.org/t/p/w200${poster_path}`;
+export default function SortItem({ item, path, ref }) {
+  const {
+    id,
+    title,
+    release_date,
+    poster_path,
+    vote_average,
+    name,
+    first_air_date,
+    profile_path,
+    known_for,
+  } = item;
+  const imgUrl =
+    poster_path !== undefined
+      ? `https://image.tmdb.org/t/p/w200${poster_path}`
+      : `https://image.tmdb.org/t/p/w200${profile_path}`;
+  const mainTitle = known_for?.map((mv) => mv.title);
   return (
     <Block ref={ref}>
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/${path}/${id}`}>
         <ImgBox>
-          <img src={imgUrl} alt={title} />
-          <VoteBox>
-            <Vote vote={vote_average} />
-          </VoteBox>
+          <img src={imgUrl} alt={title || name} />
+          {vote_average && (
+            <VoteBox>
+              <Vote vote={vote_average} />
+            </VoteBox>
+          )}
         </ImgBox>
         <TextBox>
-          <TitleText>{title}</TitleText>
-          <ReleaseDate>{release_date}</ReleaseDate>
+          <TitleText>{title || name}</TitleText>
+          <ReleaseDate>
+            {release_date || first_air_date || mainTitle.join(", ")}
+          </ReleaseDate>
         </TextBox>
       </Link>
     </Block>
@@ -51,6 +69,9 @@ const TitleText = styled.h4`
 
 const ReleaseDate = styled.div`
   color: gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const VoteBox = styled.div`

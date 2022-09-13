@@ -1,12 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { getUpcoming } from "../../dataApi";
+import { getUpcoming } from "../../../dataApi";
+import SlideItem from "./SlideItem";
 
 export default function Slider() {
   const [slideList, setSlideList] = useState([]);
   const [index, setIndex] = useState(0);
-  const imgUrl = "https://image.tmdb.org/t/p/original";
+
   useEffect(() => {
     const getResults = async () => {
       let { results } = await getUpcoming();
@@ -30,20 +31,13 @@ export default function Slider() {
 
   return (
     <Container>
-      {slideList.map((slide, idx) => {
-        return (
-          <SlideBox
-            key={slide.id}
-            imgUrl={imgUrl + slide.backdrop_path}
-            active={idx === index}
-          >
-            <img src={imgUrl + slide.backdrop_path} alt={slide.title} />
-            <SlideDate>{slide.release_date} 개봉</SlideDate>
-            <SlideTitle>{slide.title}</SlideTitle>
-          </SlideBox>
-        );
-      })}
-
+      {slideList.map((slide, idx) => (
+        <SlideItem
+          key={slide.id}
+          slide={slide}
+          active={idx === index}
+        ></SlideItem>
+      ))}
       <Button>
         <BsChevronLeft
           size={50}
@@ -64,39 +58,7 @@ const Container = styled.div`
   overflow: hidden;
   height: 650px;
   position: relative;
-`;
-
-const SlideBox = styled.li`
-  width: 100vw;
-  height: 550px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.5s;
-  ${({ active }) => css`
-    opacity: ${active ? 1 : 0};
-  `};
-  img {
-    width: 100%;
-  }
-`;
-
-const SlideDate = styled.p`
-  position: absolute;
-  bottom: 60px;
-  left: 60px;
-  color: white;
-  font-size: 1.8em;
-  text-shadow: 4px 4px 5px black;
-`;
-
-const SlideTitle = styled.p`
-  position: absolute;
-  bottom: 0;
-  left: 55px;
-  color: white;
-  font-size: 3em;
-  text-shadow: 4px 4px 5px black;
+  cursor: pointer;
 `;
 
 const Button = styled.div`

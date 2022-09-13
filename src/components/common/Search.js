@@ -1,5 +1,5 @@
 import { BiSearchAlt2 } from "react-icons/bi";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 import { getSearch } from "../../dataApi";
 import SearchItem from "./SearchItem";
@@ -19,6 +19,7 @@ const debounce = (func, wait) => {
 export default function Search() {
   const [query, setQuery] = useState("");
   const [searchList, setSearchList] = useState([]);
+  const [show, setShow] = useState(true);
 
   const handleQuery = debounce(setQuery, 300);
   useEffect(() => {
@@ -32,9 +33,11 @@ export default function Search() {
         type="text"
         placeholder="영화 제목, TV 제목, 배우 이름"
         onChange={(e) => handleQuery(e.target.value)}
+        onFocus={() => setShow(true)}
+        onBlur={() => setTimeout(() => setShow(false), 100)}
       />
       <BiSearchAlt2 size={30} cursor="pointer" />
-      <SearchList>
+      <SearchList show={show}>
         {searchList.map((result) => (
           <SearchItem key={result.id} result={result} />
         ))}
@@ -63,9 +66,12 @@ const SearchList = styled.ul`
   top: 100%;
   left: -1px;
   width: 100%;
-  height: 300px;
+  max-height: 300px;
   overflow-y: scroll;
-  border: 1px solid #ddd;
-  border-bottom: none;
-  z-index: 5;
+  z-index: 100;
+  ${({ show }) =>
+    !show &&
+    css`
+      display: none;
+    `}
 `;

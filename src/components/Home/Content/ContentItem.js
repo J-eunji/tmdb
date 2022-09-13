@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Vote from "../../common/Vote";
 
-export default function PopularItem({ popularItem, tabList }) {
+export default function ContentItem({ popularItem, tabList }) {
   const {
     poster_path,
     title,
@@ -37,7 +37,7 @@ const ItemBox = styled.div`
   flex-direction: column;
   position: relative;
   & + & {
-    margin-left: 20px;
+    margin-left: 40px;
   }
   p {
     font-size: 1.2em;

@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router";
 import { useEffect, useState } from "react";
 import DetailPage from "../Detail/DetailPage";
-import TVList from "./TVList";
 import {
   getPopular,
   getAiringToday,
   getOnTheAir,
   getTopRated,
 } from "../../dataApi";
+import SortList from "../common/SortList";
 
 export default function Movie() {
   const [popular, setPopular] = useState([]);
@@ -59,7 +59,14 @@ export default function Movie() {
         {tvList.map((sort) => (
           <Route
             path={sort.path}
-            element={<TVList label={sort.label} state={sort.state} />}
+            element={
+              <SortList
+                title="TV"
+                path="tv"
+                label={sort.label}
+                state={sort.state}
+              />
+            }
           />
         ))}
         <Route path="/:id" element={<DetailPage />} />

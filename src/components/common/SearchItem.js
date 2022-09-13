@@ -7,10 +7,12 @@ export default function SearchItem({ result }) {
   const { media_type } = result;
   if (media_type === "person")
     return (
-      <Block>
-        <BsPersonFill />
-        <p>{result.name}</p>
-      </Block>
+      <Link to={`/person/${result.id}`}>
+        <Block>
+          <BsPersonFill />
+          <p>{result.name}</p>
+        </Block>
+      </Link>
     );
   if (media_type === "movie")
     return (
@@ -35,7 +37,7 @@ export default function SearchItem({ result }) {
 const Block = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px 5px;
+  padding: 10px;
   background-color: #fff;
   cursor: pointer;
   font-size: 1.2em;

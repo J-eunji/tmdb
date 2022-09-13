@@ -31,11 +31,11 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     padding: 0;
     margin: 0;
-
   }
   a {
     color: #000;
   }
+
 `;
 
 const Container = styled.div`

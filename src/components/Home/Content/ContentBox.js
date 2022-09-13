@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import PopularList from "./PopularList";
+import ContentList from "./ContentList";
 import Title from "../../common/Title";
 import TabButton from "../../common/TabButton";
 
-export default function PopularBox({ sort, list, tabList }) {
+export default function ContentBox({ sort, list, tabList }) {
   return (
     <Container>
       <HeaderBox>
         <Title sort={sort} />
         <TabButton sort={sort} tabList={tabList} />
       </HeaderBox>
-      <PopularList list={list} tabList={tabList} />
+      <ContentList sort={sort} list={list} tabList={tabList} />
     </Container>
   );
 }

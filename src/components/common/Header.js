@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Search from "./Search";
 
 export default function Header() {
-  const menu = [
+  const menuList = [
     {
       key: "movie",
       name: "영화",
@@ -44,7 +44,7 @@ export default function Header() {
         </Logo>
       </Link>
       <GnbList>
-        {menu.map((menu, idx) => (
+        {menuList.map((menu, idx) => (
           <MenuList key={idx}>
             <Menu key={menu.name}>{menu.name}</Menu>
             <SubMenuList key={menu.key}>
@@ -66,7 +66,7 @@ const Container = styled.header`
   height: 100px;
   display: flex;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 250px;
   user-select: none;
   background-color: #fff;
 `;

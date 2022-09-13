@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Routes, Route } from "react-router";
 import styled from "styled-components";
 import { getPopular } from "../../dataApi";
+import SortList from "../common/SortList";
 import PersonDetail from "../Detail/PersonDetail";
-import PersonItem from "./PersonItem";
 
 export default function Person() {
   const [popular, setPopular] = useState([]);
+  const personList = [{ label: "인기", path: "/popular", state: popular }];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,36 +18,22 @@ export default function Person() {
     fetchData();
   }, []);
 
-  console.log(popular);
-
   return (
     <div>
-      <Container>
-        <p>인기 인물</p>
-        <ListBlock>
-          <Routes>
-            <Route
-              path="/popular"
-              element={popular.map((person) => (
-                <PersonItem key={person.id} person={person} />
-              ))}
+      <Routes>
+        <Route
+          path="/popular"
+          element={personList.map((sort) => (
+            <SortList
+              title="인물"
+              path="person"
+              label={sort.label}
+              state={sort.state}
             />
-            <Route path="/:id" element={<PersonDetail />} />
-          </Routes>
-        </ListBlock>
-      </Container>
+          ))}
+        />
+        <Route path="/:id" element={<PersonDetail />} />
+      </Routes>
     </div>
   );
 }
-
-const Container = styled.div`
-  padding: 20px;
-  p {
-    margin: 20px 0 0 20px;
-    font-size: 2em;
-  }
-`;
-const ListBlock = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;

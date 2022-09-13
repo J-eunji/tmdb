@@ -1,28 +1,25 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-export default function PersonItem({ person }) {
-  const { profile_path, name, id, known_for } = person;
+export default function CreditItem({ data }) {
+  const { name, character, id, profile_path } = data;
   const imgUrl = `https://image.tmdb.org/t/p/w200${profile_path}`;
-  const title = known_for.map((mv) => mv.title);
-  console.log(person);
+
   return (
-    <Block>
-      <Link to={`/person/${id}`}>
-        <ImgBox>
-          <img src={imgUrl} alt={name} />
-        </ImgBox>
-        <TextBox>
-          <NameText>{name}</NameText>
-          <KnownFor>{title}</KnownFor>
-        </TextBox>
-      </Link>
-    </Block>
+    <div>
+      <Block>
+        <Link to={`/person/${id}`}>
+          <ImgBox>
+            <img src={imgUrl} alt={name} />
+          </ImgBox>
+          <TextBox>
+            <NameText>{name}</NameText>
+            <Character>{character}</Character>
+          </TextBox>
+        </Link>
+      </Block>
+    </div>
   );
 }
-
 const Block = styled.div`
   width: 200px;
   overflow: hidden;
@@ -49,9 +46,6 @@ const NameText = styled.h4`
   margin-top: 10px;
 `;
 
-const KnownFor = styled.div`
+const Character = styled.div`
   color: gray;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
