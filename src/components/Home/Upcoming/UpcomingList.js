@@ -8,6 +8,7 @@ import { useRecoilValue } from "recoil";
 
 export default function UpcomingList() {
   const [movieList, setMovieList] = useState([]);
+  const [movieListV, setMovieListV] = useState([]);
   const [videoList, setVideoList] = useState([]);
   const imgUrl = "https://image.tmdb.org/t/p/original";
   const modal = useRecoilValue(modalState);
@@ -32,7 +33,7 @@ export default function UpcomingList() {
       const delIndex = resultdata.map((video, idx) =>
         video.key === undefined ? idx : 1000
       );
-      setMovieList(
+      setMovieListV(
         movieList.map((movie, idx) => idx !== delIndex[idx] && movie)
       );
       setVideoList(
@@ -44,8 +45,8 @@ export default function UpcomingList() {
 
   return (
     <ContentList imgUrl={imgUrl}>
-      {movieList.length > 0 &&
-        movieList.map(
+      {movieListV.length > 0 &&
+        movieListV.map(
           (movie, idx) =>
             movie && (
               <UpcomingItem

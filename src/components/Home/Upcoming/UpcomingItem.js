@@ -5,7 +5,6 @@ import { useSetRecoilState } from "recoil";
 
 export default function UpcommingItem({ idx, movie, videoList }) {
   const ImgUrl = "https://image.tmdb.org/t/p/w1280/";
-  // const VideoUrl = "https://www.youtube.com/";
   const setModal = useSetRecoilState(modalState);
   const { title, backdrop_path, overview } = movie;
   const setVideoUrl = useSetRecoilState(videoUrlState);
