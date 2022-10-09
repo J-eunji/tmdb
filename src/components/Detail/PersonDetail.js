@@ -152,6 +152,7 @@ const CreditItem = styled.div`
     border-radius: 8px;
   }
   p {
+    width: 154px;
     text-align: center;
   }
 

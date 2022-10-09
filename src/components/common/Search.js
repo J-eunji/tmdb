@@ -24,12 +24,12 @@ export default function Search() {
   const handleQuery = debounce(setQuery, 300);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
       if (query === "") return setSearchList([]);
       const { results } = await getSearch(query);
       setSearchList(results);
     };
-    fetchData();
+    getData();
   }, [query]);
 
   return (
