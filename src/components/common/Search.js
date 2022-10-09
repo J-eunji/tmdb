@@ -29,6 +29,7 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (query === "") return setSearchList([]);
       const { results } = await getSearch(query);
       setSearchList(results);
     };
