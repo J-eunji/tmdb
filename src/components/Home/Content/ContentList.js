@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
 import ContentItem from "./ContentItem";
+import { useContext } from "react";
+import { SortContext } from "../../Home/Main";
 
-export default function ContentList({ list, tabList, sort }) {
+export default function ContentList({ list, tabList }) {
+  const sort = useContext(SortContext);
+
   return (
     <Container sort={sort}>
       {list.map((item) => (

@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { getPopular, getTrending } from "../../dataApi";
 import { popularTab, trendingTab } from "../atoms/tabList";
+import { createContext } from "react";
+
+export const SortContext = createContext("");
 
 export default function Main() {
   const popular = useRecoilValue(popularTab);
@@ -30,12 +33,17 @@ export default function Main() {
     };
     getData();
   }, [trending]);
+
   return (
     <>
       <Slider />
-      <ContentBox sort={"popular"} list={popularList} tabList={popular} />
+      <SortContext.Provider value={"popular"}>
+        <ContentBox list={popularList} tabList={popular} />
+      </SortContext.Provider>
       <UpcomingBox />
-      <ContentBox sort={"trending"} list={trendingList} tabList={trending} />
+      <SortContext.Provider value={"trending"}>
+        <ContentBox list={trendingList} tabList={trending} />
+      </SortContext.Provider>
     </>
   );
 }
