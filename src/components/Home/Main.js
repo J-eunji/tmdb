@@ -8,6 +8,8 @@ import { popularTab, trendingTab } from "../atoms/tabList";
 import { createContext } from "react";
 
 export const SortContext = createContext("");
+export const ListContext = createContext([]);
+export const TabListContext = createContext([]);
 
 export default function Main() {
   const popular = useRecoilValue(popularTab);
@@ -38,11 +40,19 @@ export default function Main() {
     <>
       <Slider />
       <SortContext.Provider value={"popular"}>
-        <ContentBox list={popularList} tabList={popular} />
+        <ListContext.Provider value={popularList}>
+          <TabListContext.Provider value={popular}>
+            <ContentBox />
+          </TabListContext.Provider>
+        </ListContext.Provider>
       </SortContext.Provider>
       <UpcomingBox />
       <SortContext.Provider value={"trending"}>
-        <ContentBox list={trendingList} tabList={trending} />
+        <ListContext.Provider value={trendingList}>
+          <TabListContext.Provider value={trending}>
+            <ContentBox />
+          </TabListContext.Provider>
+        </ListContext.Provider>
       </SortContext.Provider>
     </>
   );

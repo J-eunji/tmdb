@@ -1,15 +1,16 @@
 import styled, { css } from "styled-components";
 import ContentItem from "./ContentItem";
 import { useContext } from "react";
-import { SortContext } from "../../Home/Main";
+import { ListContext, SortContext } from "../../Home/Main";
 
-export default function ContentList({ list, tabList }) {
+export default function ContentList() {
   const sort = useContext(SortContext);
+  const list = useContext(ListContext);
 
   return (
     <Container sort={sort}>
       {list.map((item) => (
-        <ContentItem key={item.id} popularItem={item} tabList={tabList} />
+        <ContentItem key={item.id} popularItem={item} />
       ))}
     </Container>
   );

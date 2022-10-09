@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Vote from "../../common/Vote";
+import { TabListContext } from "../../Home/Main";
+import { useContext } from "react";
 
-export default function ContentItem({ popularItem, tabList }) {
+export default function ContentItem({ popularItem }) {
+  const tabList = useContext(TabListContext);
   const {
     poster_path,
     title,
@@ -14,6 +17,7 @@ export default function ContentItem({ popularItem, tabList }) {
   } = popularItem;
   const ImgUrl = "https://image.tmdb.org/t/p/w300";
   const category = tabList.find((tab) => tab.active).category;
+  console.log(category);
   return (
     <ItemBox>
       <Link to={`/${category}/${id}`}>

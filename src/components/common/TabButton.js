@@ -2,10 +2,11 @@ import { useSetRecoilState } from "recoil";
 import styled, { css } from "styled-components";
 import { popularTab, trendingTab } from "../atoms/tabList";
 import { useContext } from "react";
-import { SortContext } from "../Home/Main";
+import { TabListContext, SortContext } from "../Home/Main";
 
-export default function TabButton({ tabList }) {
+export default function TabButton() {
   const sort = useContext(SortContext);
+  const tabList = useContext(TabListContext);
 
   const setPopularTab = useSetRecoilState(popularTab);
   const setTrendingTab = useSetRecoilState(trendingTab);

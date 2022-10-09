@@ -3,14 +3,14 @@ import ContentList from "./ContentList";
 import Title from "../../common/Title";
 import TabButton from "../../common/TabButton";
 
-export default function ContentBox({ list, tabList }) {
+export default function ContentBox() {
   return (
     <Container>
       <HeaderBox>
         <Title />
-        <TabButton tabList={tabList} />
+        <TabButton />
       </HeaderBox>
-      <ContentList list={list} tabList={tabList} />
+      <ContentList />
     </Container>
   );
 }
