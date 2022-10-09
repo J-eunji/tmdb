@@ -22,9 +22,17 @@ export default function Search() {
   const [show, setShow] = useState(true);
 
   const handleQuery = debounce(setQuery, 300);
+  // useEffect(() => {
+  //   if (query === "") return setSearchList([]);
+  //   getSearch(query).then((res) => setSearchList(res.results));
+  // }, [query]);
+
   useEffect(() => {
-    if (query === "") return setSearchList([]);
-    getSearch(query).then((res) => setSearchList(res.results));
+    const fetchData = async () => {
+      const { results } = await getSearch(query);
+      setSearchList(results);
+    };
+    fetchData();
   }, [query]);
 
   return (
